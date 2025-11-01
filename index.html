@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Verknüpfung zur CSS-Datei -->
+  <link rel="stylesheet" href="style.css">
+  <title>Café Black Rose – Eleganz trifft Genuss</title>
+  
+</head>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const nav   = document.querySelector('.site-nav');
+    const btn   = document.querySelector('.nav-toggle');
+    const links = document.querySelectorAll('.nav-links a');
+    const header = document.querySelector('header');
+
+    if (!nav || !btn) return;
+
+    function closeMenu() {
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      if (header) header.classList.remove('menu-dim');  /* optionales Abdunkeln aus */
+    }
+
+    btn.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+      if (header) header.classList.toggle('menu-dim', isOpen); /* optionales Abdunkeln an/aus */
+    });
+
+    links.forEach(a => a.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+    document.addEventListener('click', e => { if (!nav.contains(e.target)) closeMenu(); });
+  });
+</script>
+
+
+
+
+<body>
+
+  <!-- Header mit Hintergrundbild und Logo im Vordergrund -->
+  <header>
+	<nav class="site-nav" role="navigation">
+    <button class="nav-toggle" aria-controls="nav-menu" aria-expanded="false" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul id="nav-menu" class="nav-links">
+      <li><a href="#about">Über uns</a></li>
+      <li><a href="#specials">Spezialitäten</a></li>
+      <li><a href="#menu">Menü</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+    </ul>
+  </nav>
+  
+    <img src="logo.jpg" alt="Black Rose Café Logo" />
+    <h1>Café Black Rose</h1>
+    <p>Eleganz. Ruhe. Geschmack. – est. 2025</p>
+  </header>
+
+  <!-- 1) Über uns -->
+  <section id="about" class="about">
+    <div class="about-text">
+      <h2>Über uns</h2>
+      <p>
+        Willkommen im <strong>Black Rose Café</strong> – einem Ort, an dem Zeit stillsteht.
+        Inspiriert von orientalischer Eleganz und moderner Café-Kultur bieten wir handgerösteten Kaffee,
+        erlesene Tees und hausgemachte Desserts in einem Ambiente, das Wärme und Stil vereint.
+      </p>
+      <br>
+      <p>
+        Ob für ruhige Gespräche, ein gutes Buch oder inspirierende Begegnungen – hier beginnt jeder Moment
+        mit einem sanften Duft von Kaffee und einem Hauch Gold.
+      </p>
+    </div>
+    <img src="cafe.jpg" alt="Café Innenraum">
+  </section>
+
+  <!-- 2) Spezialitäten (4 Rubriken als Cards) -->
+  <section id="specials" class="specials">
+    <h2>Spezialitäten</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <h3>Getränke</h3>
+        <p>Kaffeespezialitäten und traditionelle Zubereitungen, erlesene Tees sowie besondere Heißgetränke.</p>
+      </div>
+      <div class="card">
+        <h3>Süßes &amp; Kuchen</h3>
+        <p>Baklava, orientalisches Süßgebäck und wechselnde hausgemachte Kuchen.</p>
+      </div>
+      <div class="card">
+        <h3>Snacks</h3>
+        <p>Sandwiches (vegetarisch &amp; mit Fleisch), herzhafte Backwaren und Toastvariationen.</p>
+      </div>
+      <div class="card">
+        <h3>Frühstück</h3>
+        <p>Brot, Aufstriche, Oliven, Käse, Wurst und Ei; vegetarische Varianten &amp; kleine Knabbereien.</p>
+      </div>
+    </div>
+  </section>
+
+   <!-- 3) Menü (PDF – Links + optionaler Inline-Viewer)-->
+  <section id="menu" class="menu">
+	  <h2>Menü</h2>
+
+	  <div class="menu-actions">
+		<a class="btn" href="menu.pdf" target="_blank" rel="noopener">Speisekarte (PDF) ansehen</a>
+		<a class="btn" href="menu.pdf" download>PDF herunterladen</a>
+	  </div>
+
+	  <div class="menu-image">
+		<img src="menu.png" alt="Speisekarte Café Black Rose">
+	  </div>
+
+	  <p class="pdf-note">
+		Für die vollständige Ansicht kannst du die Speisekarte auch als PDF öffnen oder herunterladen.
+	  </p>
+	</section>
+  <!-- <section id="menu" class="menu"> -->
+    <!-- <h2>Menü</h2> -->
+
+    <!-- <div class="menu-actions"> -->
+      <!-- <a class="btn" href="menu.pdf" target="_blank" rel="noopener">Speisekarte (PDF) ansehen</a> -->
+      <!-- <a class="btn" href="menu.pdf" download>PDF herunterladen</a> -->
+    <!-- </div> -->
+
+    <!-- <div class="pdf-view"> -->
+      <!-- <object data="menu.pdf#toolbar=1&view=fitH" type="application/pdf" width="100%" height="100%"> -->
+        <!-- <iframe src="menu.pdf" width="100%" height="100%"></iframe> -->
+      <!-- </object> -->
+    <!-- </div> -->
+    <!-- <p class="pdf-note">Hinweis: Auf einigen Smartphones wird das PDF nicht eingebettet angezeigt – nutze dann den Link oben.</p> -->
+  <!-- </section> -->
+
+  <!-- 4) Kontakt (mit Karten-Hintergrund) -->
+  <section id="contact" class="contact">
+    <!-- Interaktive Karte als Hintergrund (Google Maps Embed) -->
+    <iframe
+      class="map-embed"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps?q=Rathausplatz%205,%2091054%20Erlangen&output=embed">
+    </iframe>
+
+    <!-- leichter Overlay für Lesbarkeit -->
+    <div class="overlay"></div>
+
+    <!-- Inhalt über der Karte -->
+    <div class="content">
+      <h2>Kontakt & Öffnungszeiten</h2>
+      <p>
+        <strong>Adresse:</strong> Rathausplatz 5, 91054 Erlangen<br>
+        <strong>Telefon:</strong> <a href="tel:+499131123456">+49 9131 123456</a><br>
+        <strong>E-Mail:</strong> <a href="mailto:info@blackrose-cafe.de">info@blackrose-cafe.de</a>
+      </p>
+      <br>
+      <p><strong>Öffnungszeiten:</strong></p>
+		<table class="opening-hours">
+		  <tr><td>Montag – Donnerstag</td><td>8:00 – 22:00 Uhr</td></tr>
+		  <tr><td>Freitag</td><td>8:00 – 24:00 Uhr</td></tr>
+		  <tr><td>Samstag</td><td>10:00 – 24:00 Uhr</td></tr>
+		  <tr><td>Sonntag</td><td>10:00 – 22:00 Uhr</td></tr>
+		</table>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Café Black Rose – Eleganz trifft Genuss.<br>
+    <a href="impressum.html">Impressum & Datenschutz</a>
+  </footer>
+</body>
+</html>

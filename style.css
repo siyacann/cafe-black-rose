@@ -1,0 +1,428 @@
+/* ===========================================
+   Grundlayout
+=========================================== */
+body {
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #1a1a1a;
+  background: #faf8f5;
+  margin: 0;
+}
+
+/* ===========================================
+   Navigation mit Hamburger-Menü
+=========================================== */
+.site-nav{
+  position: absolute;       /* im Header verankert */
+  top: 16px;
+  right: 16px;
+  left: 16px;               /* damit Dropdown Platz hat */
+  z-index: 5;               /* über dem Header-Overlay */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: transparent;  /* keine eigene Leiste im Header */
+}
+
+/* Links (Desktop) */
+.nav-links{
+  list-style: none; display: flex; gap: 16px; margin: 0; padding: 0;
+  backdrop-filter: none;
+}
+.nav-links a{
+  color:#fff; text-decoration:none; font-weight:600; letter-spacing:.3px;
+}
+.nav-links a:hover{ color:#d4af37; }
+
+/* Hamburger-Button (Desktop versteckt) – sitzt oben rechts im Header */
+.nav-toggle{
+  display:none;
+  width:44px; height:44px; margin-right: 0;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:8px; background:transparent; cursor:pointer;
+}
+.nav-toggle span{
+  display:block; width:22px; height:2px; background:#fff;
+  margin:5px auto; transition: transform .25s ease, opacity .2s ease;
+}
+
+/* ===========================================
+   Header
+=========================================== */
+header {
+  position: relative;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Hintergrundbild + Overlay */
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("cafe.jpg") center/cover no-repeat;
+  z-index: -1;
+}
+
+header img {
+  width: 180px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+header h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+header p {
+  color: #e6e6e6;
+  margin: 0.5rem 0 0;
+}
+
+/* ===========================================
+   Allgemeine Sektionen
+=========================================== */
+section {
+  padding: 80px 7%;
+}
+
+h2 {
+  text-align: center;
+  margin: 0 0 24px;
+  font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+}
+
+/* ===========================================
+   Über uns
+=========================================== */
+.about {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.about-text p {
+  line-height: 1.7;
+}
+
+.about img {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 12px;
+}
+/* ===========================================
+   Menü-Bereich mit Hintergrundbild
+=========================================== */
+.menu {
+  position: relative;
+  padding: 100px 7%;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+  background: #2c1f19; /* Fallback-Farbe */
+}
+
+/* Hintergrundbild + Overlay */
+.menu::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.7)),
+              url("menu-bg.jpg") center/cover no-repeat;
+  z-index: 0;
+}
+
+.menu * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Titel */
+.menu h2 {
+  color: #ffd975;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  margin-bottom: 30px;
+}
+
+/* Buttons */
+.menu .btn {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border-color: #ffd975;
+  font-weight: 600;
+}
+.menu .btn:hover {
+  background: #ffd975;
+  color: #1a1a1a;
+}
+
+/* Bildanzeige */
+.menu-image {
+  margin: 40px auto;
+  max-width: 700px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  border: 2px solid rgba(255,255,255,0.1);
+}
+
+.menu-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.8s ease;
+}
+.menu-image img:hover {
+  transform: scale(1.03);
+}
+
+/* Hinweistext */
+.menu .pdf-note {
+  color: #eee;
+  font-size: 0.95rem;
+  margin-top: 10px;
+}
+
+/* ===========================================
+   Spezialitäten / Menü-Karten
+=========================================== */
+.cards-grid{
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.card{
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.card h3 {
+  margin: 0 0 10px;
+}
+
+
+/* ===========================================
+   Menü-PDF Aktionen / Viewer
+=========================================== */
+.menu-actions {
+  margin: 24px auto 0;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: linear-gradient(#f8f5ee, #efe9dc);
+  color: #1a1a1a;
+  text-decoration: none;
+  border: 1px solid #d4af37;
+  font-weight: 600;
+}
+
+.btn:hover {
+  filter: brightness(0.97);
+}
+
+.pdf-view {
+  margin: 24px auto 0;
+  width: min(100%, 900px);
+  aspect-ratio: 3 / 4;
+  border: 1px solid #e5e2dc;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.pdf-note {
+  text-align: center;
+  color: #777;
+  font-size: 0.95rem;
+  margin-top: 10px;
+}
+
+/* ===========================================
+   Kontakt mit Karten-Hintergrund
+=========================================== */
+.contact {
+  position: relative;
+  padding: 0;
+  height: 80vh;
+  color: #fff;
+  overflow: hidden;
+}
+
+.contact .map-embed {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  filter: grayscale(10%) brightness(0.75) contrast(1.05);
+  border: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.contact .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.55));
+  z-index: 1;
+}
+
+.contact .content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+}
+
+.contact h2 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.contact a {
+  color: #ffd975;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+}
+
+/* ===========================================
+   Impressum
+=========================================== */
+a { color: #d4af37; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    hr { border: none; border-top: 1px solid #ddd; margin: 40px 0; }
+    .back-btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 12px 24px;
+      border: 1px solid #d4af37;
+      color: #1a1a1a;
+      border-radius: 999px;
+      font-weight: 600;
+      background: linear-gradient(#f8f5ee, #efe9dc);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .back-btn:hover {
+      background: #d4af37;
+      color: #fff;
+    }
+	
+	
+/* ===========================================
+   Footer
+=========================================== */
+footer {
+  background: #000;
+  color: #aaa;
+  text-align: center;
+  padding: 18px 10px;
+  font-size: 0.95rem;
+}
+
+footer a {
+  color: #d4af37;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+/* ===========================================
+   Öffnungszeiten
+=========================================== */
+
+.opening-hours {
+  margin: 10px auto 0;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+.opening-hours td:first-child {
+  padding-right: 24px;
+  text-align: left;
+  white-space: nowrap;
+}
+.opening-hours td:last-child {
+  text-align: right;
+  white-space: nowrap;
+  color: #ffd975; /* Goldton passend zum Design */
+  font-weight: 600;
+}
+@media (max-width: 600px){
+  .opening-hours td:first-child{padding-right:12px;}
+}
+
+/* ===========================================
+   Responsive Darstellung (Hamburger-Menü)
+=========================================== */
+@media (max-width: 900px) {
+  .about {
+    grid-template-columns: 1fr;
+  }
+
+  header {
+    height: 70vh;
+  }
+
+  .nav-toggle{ display:inline-block; }
+
+  /* Menü zunächst verborgen – als Panel im Header */
+  .nav-links{
+    position:absolute;
+    top: 60px;              /* unter dem Button */
+    right:16px;
+    left:16px;              /* volle Breite im Header */
+    display:none;           /* per JS toggeln */
+    flex-direction:column; gap:8px;
+    padding:12px;
+    background: rgba(0,0,0,.85);    /* dunkles Panel über dem Headerbild */
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius:12px;
+  }
+  .nav-links a{ padding:10px 12px; border-radius:8px; }
+  .nav-links a:hover{ background: rgba(255,255,255,.06); color:#ffd975; }
+
+  /* Zustand: offen */
+  .site-nav.open .nav-links{ display:flex; }
+
+  /* Hamburger in “X” verwandeln */
+  .site-nav.open .nav-toggle span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+  .site-nav.open .nav-toggle span:nth-child(2){ opacity:0; }
+  .site-nav.open .nav-toggle span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+	}
+}
+
+/* Optional: leichtes Header-Dim, wenn Menü offen (verbessert Lesbarkeit) */
+@media (max-width: 900px){
+  header.menu-dim::before{
+    /* dein bestehendes Header-Overlay wird hier minimal dunkler */
+    background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+                url('cafe.jpg') center/cover no-repeat;
+  }
+}
